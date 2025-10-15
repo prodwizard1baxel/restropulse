@@ -1,16 +1,18 @@
-//*
-Restro Pulse - Assets moved to /src/assets folder.
-Ensure your /src/assets folder contains these files:
-  - ai-generator.png
-  - insta-scheduling.png
-  - whatsapp-automation.png
-  - hero-image-2.png
-*//
+/*
+  Restro Pulse - Assets moved to /src/assets folder.
+  Ensure your /src/assets folder contains these files:
+    - ai-generator.png
+    - insta-scheduling.png
+    - whatsapp-automation.png
+    - hero-image-2.png
+*/
+
 
 import React from "react";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
+
 
 // Updated image imports from /assets folder
 import aiGenerator from "./assets/ai-generator.png";
