@@ -1,5 +1,5 @@
 /*
-Restro Pulse - Includes Hero, Features, and Pricing sections with scroll-triggered animations
+Restro Pulse - Hero, Features, and Pricing sections with scroll-triggered animations and working pricing display
 */
 
 import React, { useRef } from "react";
@@ -68,26 +68,15 @@ function Hero() {
             Restro Pulse helps restaurants grow with automated WhatsApp workflows and scheduled Instagram posts — all from a single dashboard.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
-            <a
-              href="#pricing"
-              className="inline-flex items-center gap-2 px-5 py-3 bg-rose-600 text-white rounded-md shadow hover:bg-rose-700"
-            >
+            <a href="#pricing" className="inline-flex items-center gap-2 px-5 py-3 bg-rose-600 text-white rounded-md shadow hover:bg-rose-700">
               Get Started Free
             </a>
-            <a
-              href="#features"
-              className="inline-flex items-center gap-2 px-5 py-3 border rounded-md"
-            >
+            <a href="#features" className="inline-flex items-center gap-2 px-5 py-3 border rounded-md">
               Explore Features
             </a>
           </div>
         </motion.div>
-        <motion.img
-          style={{ y }}
-          src={heroImage2}
-          alt="Restro Pulse automation"
-          className="rounded-2xl shadow-xl w-full h-auto object-cover"
-        />
+        <motion.img style={{ y }} src={heroImage2} alt="Restro Pulse automation" className="rounded-2xl shadow-xl w-full h-auto object-cover" />
       </div>
     </motion.section>
   );
@@ -126,10 +115,7 @@ function Features() {
     >
       <AnimatedBackground />
       <div className="max-w-7xl mx-auto px-6 lg:px-8 text-center relative z-10">
-        <motion.h2
-          variants={fadeDownVariant}
-          className="text-3xl font-extrabold text-slate-900 mb-8"
-        >
+        <motion.h2 variants={fadeDownVariant} className="text-3xl font-extrabold text-slate-900 mb-8">
           Our Powerful Features
         </motion.h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
@@ -142,22 +128,10 @@ function Features() {
               className="bg-white rounded-2xl shadow hover:shadow-xl p-6"
             >
               <SafeImage src={feature.src} alt={feature.title} />
-              <motion.h3
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.1 * index, duration: 0.6 }}
-                className="mt-4 text-xl font-semibold text-rose-600"
-              >
+              <motion.h3 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 * index, duration: 0.6 }} className="mt-4 text-xl font-semibold text-rose-600">
                 {feature.title}
               </motion.h3>
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.15 * index, duration: 0.6 }}
-                className="mt-2 text-slate-600"
-              >
+              <motion.p initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.15 * index, duration: 0.6 }} className="mt-2 text-slate-600">
                 {feature.desc}
               </motion.p>
             </motion.div>
@@ -169,88 +143,36 @@ function Features() {
 }
 
 function Pricing() {
-  const ref = useRef(null);
-  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
-  const y = useTransform(scrollYProgress, [0, 1], [0, 80]);
-
   const plans = [
-    {
-      id: 1,
-      title: "Starter",
-      price: "$0",
-      features: [
-        "Basic WhatsApp automation",
-        "5 scheduled posts/month",
-        "Email support",
-      ],
-    },
-    {
-      id: 2,
-      title: "Pro",
-      price: "$29/mo",
-      features: [
-        "Unlimited scheduling",
-        "AI caption generator",
-        "Priority chat support",
-      ],
-    },
-    {
-      id: 3,
-      title: "Enterprise",
-      price: "Custom",
-      features: [
-        "Team collaboration",
-        "Custom integrations",
-        "Dedicated account manager",
-      ],
-    },
+    { id: 1, title: "Starter", price: "$0", features: ["Basic WhatsApp automation", "5 scheduled posts/month", "Email support"] },
+    { id: 2, title: "Pro", price: "$29/mo", features: ["Unlimited scheduling", "AI caption generator", "Priority chat support"] },
+    { id: 3, title: "Enterprise", price: "Custom", features: ["Team collaboration", "Custom integrations", "Dedicated account manager"] }
   ];
 
   return (
-    <motion.section
-      id="pricing"
-      variants={fadeDownVariant}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true }}
-      className="relative py-20 bg-white overflow-hidden"
-    >
+    <motion.section id="pricing" variants={fadeDownVariant} initial="hidden" whileInView="visible" viewport={{ once: true }} className="relative py-20 bg-white overflow-hidden">
       <AnimatedBackground />
       <div className="max-w-7xl mx-auto px-6 lg:px-8 text-center relative z-10">
-        <motion.h2
-          variants={fadeDownVariant}
-          className="text-3xl font-extrabold text-slate-900 mb-8"
-        >
+        <motion.h2 variants={fadeDownVariant} className="text-3xl font-extrabold text-slate-900 mb-8">
           Pricing Plans
         </motion.h2>
-        <div
-          ref={ref}
-          className="grid grid-cols-1 md:grid-cols-3 gap-10"
-        >
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
           {plans.map((plan, index) => (
             <motion.div
               key={plan.id}
-              style={{ y }}
               variants={fadeDownVariant}
               whileHover={{ scale: 1.03 }}
               transition={{ duration: 0.4, delay: 0.1 * index }}
               className="bg-slate-50 p-8 rounded-2xl shadow hover:shadow-lg transition"
             >
-              <h3 className="text-xl font-semibold text-rose-600 mb-2">
-                {plan.title}
-              </h3>
-              <p className="text-3xl font-bold text-slate-900 mb-4">
-                {plan.price}
-              </p>
+              <h3 className="text-xl font-semibold text-rose-600 mb-2">{plan.title}</h3>
+              <p className="text-3xl font-bold text-slate-900 mb-4">{plan.price}</p>
               <ul className="text-slate-600 text-sm space-y-2 mb-6">
                 {plan.features.map((feature, i) => (
                   <li key={i}>• {feature}</li>
                 ))}
               </ul>
-              <a
-                href="#"
-                className="inline-block bg-rose-600 text-white px-5 py-2 rounded-md hover:bg-rose-700"
-              >
+              <a href="#" className="inline-block bg-rose-600 text-white px-5 py-2 rounded-md hover:bg-rose-700">
                 Choose Plan
               </a>
             </motion.div>
@@ -270,3 +192,4 @@ export default function App() {
     </div>
   );
 }
+
