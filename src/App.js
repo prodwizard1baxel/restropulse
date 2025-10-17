@@ -1,5 +1,5 @@
 /*
-Restro Pulse - Added Top Navigation with Smooth Scroll and Login button
+Restro Pulse - Added Restaurant Animation and Case Studies Section
 */
 
 import React, { useRef } from "react";
@@ -27,6 +27,9 @@ function Navbar() {
         <div className="hidden md:flex gap-6 text-slate-700 font-medium">
           <ScrollLink to="features" smooth={true} duration={600} className="hover:text-rose-600 cursor-pointer">
             Features
+          </ScrollLink>
+          <ScrollLink to="restaurants" smooth={true} duration={600} className="hover:text-rose-600 cursor-pointer">
+            Restaurants
           </ScrollLink>
           <ScrollLink to="pricing" smooth={true} duration={600} className="hover:text-rose-600 cursor-pointer">
             Pricing
@@ -106,6 +109,61 @@ function Features() {
   );
 }
 
+function Restaurants() {
+  const logos = [
+    "https://upload.wikimedia.org/wikipedia/commons/7/7c/Starbucks_Coffee_Logo.svg",
+    "https://upload.wikimedia.org/wikipedia/commons/6/6b/Dominos_pizza_logo.svg",
+    "https://upload.wikimedia.org/wikipedia/commons/1/12/McDonald%27s_Golden_Arches.svg",
+    "https://upload.wikimedia.org/wikipedia/commons/2/2f/Subway_logo.svg",
+    "https://upload.wikimedia.org/wikipedia/commons/4/4e/Pizza_Hut_logo.svg",
+  ];
+
+  return (
+    <section id="restaurants" className="py-20 bg-white text-center overflow-hidden">
+      <h2 className="text-3xl font-extrabold text-slate-900 mb-12">Restaurants Using Restro Pulse</h2>
+      <motion.div
+        className="flex gap-16 items-center justify-center whitespace-nowrap"
+        animate={{ x: [0, -1200] }}
+        transition={{ repeat: Infinity, duration: 25, ease: "linear" }}
+      >
+        {logos.concat(logos).map((logo, i) => (
+          <img key={i} src={logo} alt="Restaurant logo" className="h-20 opacity-80 hover:opacity-100 transition" />
+        ))}
+      </motion.div>
+    </section>
+  );
+}
+
+function CaseStudies() {
+  const studies = [
+    {
+      title: "Domino’s Growth Story",
+      desc: "Using Restro Pulse’s automation tools, Domino’s reduced manual posting time by 70% and saw a 35% increase in engagement.",
+      image: "https://via.placeholder.com/600x400?text=Domino's+Case+Study",
+    },
+    {
+      title: "Starbucks’ Personalized Marketing",
+      desc: "Restro Pulse’s WhatsApp integration helped Starbucks improve customer retention and streamline promotional campaigns.",
+      image: "https://via.placeholder.com/600x400?text=Starbucks+Case+Study",
+    },
+  ];
+
+  return (
+    <section id="case-studies" className="py-20 bg-slate-50 text-center">
+      <h2 className="text-3xl font-extrabold text-slate-900 mb-8">Case Studies</h2>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-7xl mx-auto px-6">
+        {studies.map((c, i) => (
+          <motion.div key={i} whileHover={{ scale: 1.03 }} className="bg-white rounded-2xl shadow p-6">
+            <img src={c.image} alt={c.title} className="rounded-xl mb-4" />
+            <h3 className="text-xl font-semibold text-rose-600 mb-2">{c.title}</h3>
+            <p className="text-slate-600">{c.desc}</p>
+          </motion.div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
 function Pricing() {
   const plans = [
     { id: 1, title: "Starter", price: "$0", features: ["Basic automation", "5 posts/month", "Email support"] },
@@ -176,7 +234,7 @@ export default function App() {
     <Router>
       <Navbar />
       <Routes>
-        <Route path="/" element={<><Hero /><Features /><Pricing /></>} />
+        <Route path="/" element={<><Hero /><Features /><Restaurants /><CaseStudies /><Pricing /></>} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
       </Routes>
