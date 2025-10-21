@@ -1,0 +1,8 @@
+# robots.txt — Restro Pulse
+# This file tells search engines which parts of the site to index
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://restropulse.vercel.app/sitemap.xml
